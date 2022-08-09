@@ -13,8 +13,8 @@
  * @print: pointer for print function
  *
  * Description: stores pointers
- *
  */
+
 typedef struct pt_fmt
 {
 	char *fmt;

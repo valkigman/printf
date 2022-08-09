@@ -1,49 +1,39 @@
 #ifndef MAIN_H
 #define MAIN_H
+
 #include <stdarg.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <limits.h>
 #include <stdio.h>
 
 /**
- * struct vtype - struct vtype
- * @tp: tp
- * @f: function
+ * struct convert - struct for print function
+ * @fmt: index
+ * @print: pointer for print function
  *
+ * Description: stores pointers
  */
-typedef struct vtype
+
+typedef struct pt_fmt
 {
-	char tp;
-	void (*f)();
-} vtype_t;
+	char *fmt;
+	int (*print)(va_list valist);
+} pt_fmt;
+
 int _printf(const char *format, ...);
-void print_char(va_list valist);
-void print_int(va_list valist);
-void print_float(va_list valist);
-void print_string(va_list valist);
-void _write_buffer(char *buffer, int *index);
-int _strlen(char *s);
-char *_memcpy(char *dest, char *src, unsigned int n);
-void format_s(va_list valist, char *buffer, int *index);
-void format_c(va_list valist, char *buffer, int *index);
-void format_d(va_list valist, char *buffer, int *index);
-char *itos(char str[], long int num);
-char *utos(char str[], int num);
-int num_len(int num);
-int float_len(double f);
-void format_i(va_list valist, char *buffer, int *index);
-void format_u(va_list valist, char *buffer, int *index);
-void format_perc(va_list valist, char *buffer, int *index);
-void format_p(va_list valist, char *buffer, int *index);
-void format_lx(va_list valist, char *buffer, int *index);
-char *tostring(char str[], int num);
-int num_len(int num);
-void reset_buffer(char buffer[]);
-void *rot13(char *s);
-void rev_string(char *s);
-void format_h(va_list valist, char *buffer, int *index);
-void format_ch(va_list valist, char *buffer, int *index);
-void format_o(va_list valist, char *buffer, int *index);
-void format_b(va_list valist, char *buffer, int *index);
-void format_r(va_list valist, char *buffer, int *index);
-void format_R(va_list valist, char *buffer, int *index);
+int _putchar(char c);
+int print_char(va_list);
+int print_string(va_list);
+int print_percent(va_list);
+int get_print(const char *, va_list, pt_fmt pt_format[]);
+int print_digit(va_list);
+int print_binary_conv(va_list);
+int print_oct(va_list);
+int print_hex_low(va_list);
+int print_hex_upper(va_list);
+int print_hex_upper(va_list valist);
+int binary_oct_hex_convert(unsigned int, int, int);
+int print_unsig_int(va_list valist);
 
 #endif
